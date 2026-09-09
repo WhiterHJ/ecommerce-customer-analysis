@@ -33,11 +33,21 @@
 
 ```text
 ecommerce-customer-analysis/
+├── data/
+│   ├── raw/
+│   │   └── README.md
+│   └── processed/
+│       ├── README.md
+│       └── transactions_clean_sample.csv
 ├── docs/
-│   ├── data_cleaning.md
 │   ├── data_audit.md
-│   ├── project_scope.md
-│   └── environment_check.md
+│   ├── data_cleaning.md
+│   ├── data_dictionary.md
+│   ├── environment_check.md
+│   └── project_scope.md
+├── notebooks/
+│   ├── 01_data_audit.ipynb
+│   └── 02_data_cleaning.ipynb
 ├── .gitignore
 ├── README.md
 └── requirements.txt
@@ -49,7 +59,7 @@ ecommerce-customer-analysis/
 
 https://archive.ics.uci.edu/dataset/352/online+retail
 
-当前阶段尚未将原始数据加入仓库。
+原始数据和完整清洗结果不上传GitHub。运行项目时，需要按照数据说明下载原始文件，并通过Notebook重新生成清洗结果。
 
 ## 项目进度
 
