@@ -34,6 +34,8 @@
 ```text
 ecommerce-customer-analysis/
 ├── docs/
+│   ├── data_cleaning.md
+│   ├── data_audit.md
 │   ├── project_scope.md
 │   └── environment_check.md
 ├── .gitignore
