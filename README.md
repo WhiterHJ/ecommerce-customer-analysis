@@ -44,10 +44,14 @@ ecommerce-customer-analysis/
 │   ├── data_cleaning.md
 │   ├── data_dictionary.md
 │   ├── environment_check.md
+│   ├── metric_definitions.md
 │   └── project_scope.md
 ├── notebooks/
 │   ├── 01_data_audit.ipynb
 │   └── 02_data_cleaning.ipynb
+├── sql/
+│   ├── 01_create_schema.sql
+│   └── 02_import_transactions.sql
 ├── .gitignore
 ├── README.md
 └── requirements.txt
@@ -69,6 +73,8 @@ https://archive.ics.uci.edu/dataset/352/online+retail
 - [x] 下载并理解数据
 - [x] 数据质量检查
 - [x] 数据清洗
+- [x] 建立业务指标口径
+- [x] MySQL建库和数据导入
 - [ ] SQL业务分析
 - [ ] Python业务分析
 - [ ] RFM客户分层
