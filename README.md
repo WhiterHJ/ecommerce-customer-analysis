@@ -2,7 +2,7 @@
 
 基于公开电商交易数据的经营分析与客户价值分层项目。
 
-> 当前状态：已完成数据清洗，准备进行 MySQL 业务分析。
+> 当前状态：已完成 MySQL 业务分析，准备进行 Python 业务分析与结果验证。
 
 ## 项目简介
 
@@ -18,6 +18,15 @@
 4. 退款金额和退款率如何变化？
 5. 客户复购情况如何？
 6. 如何通过RFM模型进行客户价值分层？
+
+## SQL阶段主要结果
+
+- 正常销售额为£10,642,110.80，共包含19,960个去重销售订单。
+- 英国贡献84.59%的正常销售额，是最主要的销售市场。
+- 4,338名可识别客户中，复购客户占65.58%。
+- 取消金额为£893,979.73，占正常销售额的8.40%。
+- 2011年11月是销售额最高的完整月份。
+- 详细结果见[SQL业务分析报告](docs/sql_analysis.md)。
 
 ## 技术工具
 
@@ -45,13 +54,16 @@ ecommerce-customer-analysis/
 │   ├── data_dictionary.md
 │   ├── environment_check.md
 │   ├── metric_definitions.md
-│   └── project_scope.md
+│   ├── project_scope.md
+│   └── sql_analysis.md
 ├── notebooks/
 │   ├── 01_data_audit.ipynb
 │   └── 02_data_cleaning.ipynb
 ├── sql/
 │   ├── 01_create_schema.sql
-│   └── 02_import_transactions.sql
+│   ├── 02_import_transactions.sql
+│   ├── 03_overview_metrics.sql
+│   └── 04_business_analysis.sql
 ├── .gitignore
 ├── README.md
 └── requirements.txt
@@ -75,7 +87,7 @@ https://archive.ics.uci.edu/dataset/352/online+retail
 - [x] 数据清洗
 - [x] 建立业务指标口径
 - [x] MySQL建库和数据导入
-- [ ] SQL业务分析
+- [x] SQL业务分析
 - [ ] Python业务分析
 - [ ] RFM客户分层
 - [ ] Power BI仪表盘
