@@ -36,3 +36,4 @@ data/processed/*
 !data/processed/.gitkeep
 !data/processed/README.md
 !data/processed/transactions_clean_sample.csv
+!data/processed/customer_rfm.csv

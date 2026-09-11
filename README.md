@@ -2,7 +2,7 @@
 
 基于公开电商交易数据的经营分析与客户价值分层项目。
 
-> 当前状态：已完成 SQL 和 Python 业务分析，准备进行 RFM 客户价值分层。
+> 当前状态：已完成 RFM 客户价值分层，准备制作 Power BI 可视化仪表盘。
 
 ## 项目简介
 
@@ -29,6 +29,10 @@
 - Python复算的8项核心指标与SQL结果全部一致。
 - 已生成月度销售趋势、海外市场和商品表现图表。
 - 详细结果见[SQL业务分析报告](docs/sql_analysis.md)和[Python业务分析报告](docs/python_analysis.md)。
+- RFM分析将4,338名可识别客户划分为7个客户群体。
+- Champions占客户数的21.00%，贡献63.87%的可识别客户销售额。
+- At Risk客户贡献9.53%的销售额，是重要的客户召回群体。
+- 详细结果见[RFM客户价值分析报告](docs/rfm_analysis.md)。
 
 ## 技术工具
 
@@ -50,6 +54,7 @@ ecommerce-customer-analysis/
 │   │   └── README.md
 │   └── processed/
 │       ├── README.md
+│       ├── customer_rfm.csv
 │       └── transactions_clean_sample.csv
 ├── docs/
 │   ├── data_audit.md
@@ -57,16 +62,20 @@ ecommerce-customer-analysis/
 │   ├── data_dictionary.md
 │   ├── environment_check.md
 │   ├── metric_definitions.md
-│   ├── project_scope.m
-│   ├── python_analysis.mdd
+│   ├── project_scope.md
+│   ├── python_analysis.md
+│   ├── rfm_analysis.md
 │   └── sql_analysis.md
 ├── notebooks/
 │   ├── 01_data_audit.ipynb
 │   ├── 02_data_cleaning.ipynb
-│   └── 03_business_analysis.ipynb
+│   ├── 03_business_analysis.ipynb
+│   └── 04_rfm_analysis.ipynb
 ├── reports/
 │   └── figures/
 │       ├── monthly_sales_trend.png
+│       ├── rfm_segment_customers.png
+│       ├── rfm_segment_sales.png
 │       ├── top_overseas_markets.png
 │       └── top_products_by_sales.png
 ├── sql/
@@ -99,7 +108,7 @@ https://archive.ics.uci.edu/dataset/352/online+retail
 - [x] MySQL建库和数据导入
 - [x] SQL业务分析
 - [x] Python业务分析
-- [ ] RFM客户分层
+- [x] RFM客户分层
 - [ ] Power BI仪表盘
 - [ ] 项目报告与最终文档
 
