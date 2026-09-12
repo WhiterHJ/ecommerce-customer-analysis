@@ -1,0 +1,137 @@
+// Power BI数据模型与DAX定义
+// 本文件用于GitHub代码展示，不会自动导入Power BI。
+
+// ====================
+// transactions计算列
+// ====================
+
+InvoiceDateOnly =
+DATE(
+    YEAR(transactions[InvoiceDate]),
+    MONTH(transactions[InvoiceDate]),
+    DAY(transactions[InvoiceDate])
+)
+
+
+// ====================
+// 日期表
+// ====================
+
+DateTable =
+ADDCOLUMNS(
+    CALENDAR(
+        MIN(transactions[InvoiceDateOnly]),
+        MAX(transactions[InvoiceDateOnly])
+    ),
+    "Year", YEAR([Date]),
+    "MonthNumber", MONTH([Date]),
+    "YearMonth", FORMAT([Date], "yyyy-MM"),
+    "MonthStart", DATE(YEAR([Date]), MONTH([Date]), 1)
+)
+
+
+// ====================
+// 经营分析度量值
+// ====================
+
+Sales Amount =
+CALCULATE(
+    SUM(transactions[LineAmount]),
+    transactions[TransactionType] = "Sale"
+)
+
+Sales Orders =
+CALCULATE(
+    DISTINCTCOUNT(transactions[InvoiceNo]),
+    transactions[TransactionType] = "Sale"
+)
+
+Identified Customers =
+CALCULATE(
+    DISTINCTCOUNT(transactions[CustomerID]),
+    transactions[TransactionType] = "Sale",
+    NOT(ISBLANK(transactions[CustomerID]))
+)
+
+Average Order Value =
+DIVIDE(
+    [Sales Amount],
+    [Sales Orders]
+)
+
+Cancellation Amount =
+ABS(
+    CALCULATE(
+        SUM(transactions[LineAmount]),
+        transactions[TransactionType] = "Cancellation"
+    )
+)
+
+Cancellation Amount Rate =
+DIVIDE(
+    [Cancellation Amount],
+    [Sales Amount]
+)
+
+Quantity Sold =
+CALCULATE(
+    SUM(transactions[Quantity]),
+    transactions[TransactionType] = "Sale",
+    transactions[ItemType] = "Merchandise"
+)
+
+
+// ====================
+// RFM度量值
+// ====================
+
+RFM Customers =
+DISTINCTCOUNT(customer_rfm[CustomerID])
+
+RFM Sales Amount =
+SUM(customer_rfm[Monetary])
+
+Repeat Customers =
+CALCULATE(
+    COUNTROWS(customer_rfm),
+    customer_rfm[Frequency] >= 2
+)
+
+Repeat Customer Rate =
+DIVIDE(
+    [Repeat Customers],
+    [RFM Customers]
+)
+
+Champion Customers =
+CALCULATE(
+    COUNTROWS(customer_rfm),
+    customer_rfm[Segment] = "Champions"
+)
+
+At Risk Customers =
+CALCULATE(
+    COUNTROWS(customer_rfm),
+    customer_rfm[Segment] = "At Risk"
+)
+
+Champion Sales Share =
+DIVIDE(
+    CALCULATE(
+        [RFM Sales Amount],
+        customer_rfm[Segment] = "Champions"
+    ),
+    CALCULATE(
+        [RFM Sales Amount],
+        ALL(customer_rfm[Segment])
+    )
+)
+
+Average Recency =
+AVERAGE(customer_rfm[Recency])
+
+Average Frequency =
+AVERAGE(customer_rfm[Frequency])
+
+Average Monetary =
+AVERAGE(customer_rfm[Monetary])
